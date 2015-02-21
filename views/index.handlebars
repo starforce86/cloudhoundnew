@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body class="home">
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('img/home-bg.jpg')">
+    
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container">
+            	<div class="row">
+                    <a class="navbar-brand" href="/"><img src="img/logo.png" alt="Cloud Hound"></a>
+              </div>
+            </div>
+            <!-- /.container -->
+        </nav>
+        
+        <div id="moving-clouds">
+            <div id="group-1" class="sky">
+            
+                <div class="cloud_one"></div>
+        
+                <div class="cloud_two"></div>
+        
+                <div class="cloud_three"></div>
+                
+                <div class="cloud_four"></div>
+            </div>
+           <div id="group-2" class="sky">
+            
+                <div class="cloud_one"></div>
+        
+                <div class="cloud_two"></div>
+        
+                <div class="cloud_three"></div>
+                
+                <div class="cloud_four"></div>
+            </div>
+        </div>
+    	
+        <div id="search-container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    	<div id="search">
+                            <form role="search" action="{{action}}" method="get" id="search-form" name="search-form">
+                                 <div class="input-group">
+						            <input type="text" class="form-control" placeholder="Enter search here" id="query" name="query" value="">
+							         <div class="input-group-btn">
+						            <button type="submit" class="btn btn-success"><span>GO</span></button>
+						            </div>
+						        </div>
+                            </form> 
+                        </div>
+                        <div id="site-heading">
+                        	<h2>Browse social, mobile, web & the cloud</h2>
+                       	</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Footer -->
+
+    <footer>
+        <div id="categories">
+        	<div class="container">
+            	<div class="row">
+                        <aside id="news" class="col-md-2 col-md-offset-1 col-sm-6">
+                        <h6><span class="icon icon-1"></span>News</h6>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="/local-news">Local</a>
+                                </li>
+                                <li>
+                                    <a href="/news">National</a>
+                                </li>
+                                 <li>
+                                    <a href="/world-news">World</a>
+                                </li>
+                                <li>
+                                    <a href="/top-news">Top News</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        
+                        <aside id="finance" class="col-md-2 col-sm-6">
+                        <h6><span class="icon icon-2"></span>Finance</h6>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="/stocks">Stocks</a>
+                                </li>
+                                <li>
+                                    <a href="/stocks-news">News</a>
+                                </li>
+                                 <li>
+                                    <a href="/local-finance">Local</a>
+                                </li>
+                                <li>
+                                    <a href="/global-finance">Global</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        
+                        <aside id="entertainment" class="col-md-2 col-sm-6">
+                        <h6><span class="icon icon-3"></span>Entertainment</h6>
+                             <ul class="list-unstyled">
+                                <li>
+                                    <a href="/tv">TV</a>
+                                </li>
+                                <li>
+                                    <a href="/movies">Movies</a>
+                                </li>
+                                 <li>
+                                    <a href="/music">Music</a>
+                                </li>
+                                <li>
+                                    <a href="/books">Books</a>
+                                </li>
+                            </ul>
+                        </aside>
+
+                        <aside id="sports" class="col-md-2 col-sm-6">
+                        <h6><span class="icon icon-4"></span>Sports</h6>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="/mlb">MLB</a>
+                                </li>
+                                <li>
+                                    <a href="/nba">NBA</a>
+                                </li>
+                                 <li>
+                                    <a href="/ncaa">NCAA</a>
+                                </li>
+                                <li>
+                                    <a href="/nfl">NFL</a>
+                                </li>
+                            </ul>
+                        </aside>
+                        
+                        <aside id="weather" class="col-md-2 col-sm-6">
+                        <h6><span class="icon icon-5"></span>Weather</h6>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a href="/weather">Today</a>
+                                </li>
+                                <li>
+                                    <a href="/week-weather">This Week</a>
+                                </li>
+                                 <li>
+                                    <a href="/national-weather">National</a>
+                                </li>
+                                <li>
+                                    <a href="/world-weather">World</a>
+                                </li>
+                            </ul>
+                        </aside>
+        
+        
+				</div>
+        	</div>
+        </div>
+        
+        <div id="copyright">
+        	<div class="container">
+            	<div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; 2014 by Cloud Hound and those posting information, <a href="">Terms &amp; Conditions</a>, <a href="">Privacy Policy</a>. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Plugin JavaScript -->
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/functions.js"></script>
+
+</body>
+
+</html>

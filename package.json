@@ -8,7 +8,11 @@
   },
   "dependencies": {
     "express": "~4.9.x",
-    "express-handlebars": "^1.2.1"
+    "express-handlebars": "^1.2.1",
+    "geoip-lite": "^1.1.5",
+    "lodash": "^3.3.0",
+    "parse-rss": "^1.0.3",
+    "yaboss": "^0.1.2"
   },
   "engines": {
     "node": "0.10.x"

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Clean Blog</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		
+    <![endif]-->
+	<script src="./js/jquery.min.js"></script>
+	<script src="https://s.yimg.com/rv/boss_v2/js/yjs.js"></script>
+	
+	<script language="javascript"> 
+		var dmtoken = "{{adsResults}}";
+		dmtoken = dmtoken.replace(/&amp;/g, '&');
+		set_debug_mode();
+	</script>
+	
+	<script language="javascript">
+		
+		function fire_ads(token) {
+			
+			post_search_display();
+			
+			var callback_function = "render_ads";
+
+			fetch_ads(callback_function, token, "");
+		}
+		function render_ads(result_json) {
+
+			if (result_json.bossresponse.responsecode != 200) {
+				return false;
+			}
+						
+			if (result_json.bossresponse.ads.resultset.numResults == null || result_json.bossresponse.ads.resultset.numResults == 0) {
+				return false;
+			}
+
+			var innerHTML = "<div>";
+			innerHTML += "<p><a href='https://help.yahoo.com/l/us/yahoo/search/basics/basics-03.html'><b>Sponsored Ads</b></a></p>";
+			
+			for(i=0;i<result_json.bossresponse.ads.resultset.numResults;i++) {
+				var item = result_json.bossresponse.ads.resultset.listing[i];
+				title = item.title;
+				description = item.description;
+				siteHost = item.siteHost;
+				clickurl = item.clickurl;
+				innerHTML += '<div class="adsResult">';
+				innerHTML += "<h3><a href='" + clickurl + "'>" + title + "</a></h3>";
+				innerHTML += "<p>" + description + "</p>";
+				innerHTML += "<span class='url'><a href='http://"+siteHost+"'>" + siteHost+ "</a></span>";
+				innerHTML += "</div>";
+			}
+			
+			innerHTML += "</div>";
+			
+			var adsSection = document.getElementById('ads');
+			adsSection.innerHTML = innerHTML;
+		}
+
+	</script>
+
+</head>
+
+<body class="inner search-results" onload='fire_ads(dmtoken)'>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="header">
+  
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+            <div class="container">
+            	<div class="row">
+                    <a class="navbar-brand" href=""><img src="img/logo.png" alt="Cloud Hound"></a>
+              </div>
+            </div>
+            <!-- /.container -->
+        </nav>
+        
+    </header>
+	
+    <!-- Main Content -->
+    <div id="main-content">
+        <div class="container">
+            <div class="row">
+            <div id="primary" class="col-md-6 col-md-push-2">
+					<div id="primary-inner" class="row">
+                    
+                    	<div id="content-header">
+                        	<div class="top clearfix">
+                                <h1><span class="keyword">{{term}}</span></h1>
+                            </div>
+                        </div>
+                        <div id="content">
+                        <div id="search-results">
+							<span id='ads'>
+							</span>
+                        </div>
+                        </div>
+                        
+                    </div>
+					
+                    <div id="primary-inner" class="row">
+                    
+                    	<div id="content-header">
+                        	<div class="top clearfix">
+                                <h1>Search result for <span class="keyword">{{term}}</span></h1>
+                            </div>
+                            <div class="bottom clearfix">
+                                <p class="sub-title">About {{totalresults}} results (0.38 seconds) </p>
+                            </div>
+                        </div>
+                        <div id="content">
+                        <div id="search-results">
+							{{#each results}}
+								<div class="result">
+								  <h3><a href="{{url}}">{{{title}}}</a></h3>
+								  <span class="url"><a href="{{url}}">{{url}}</a></span>
+								  <p>{{{abstract}}}</p>
+								</div>
+							{{/each}}
+                        </div>
+                        </div>
+                        <div id="related">
+                        <p>Search Related to search cloud</p>
+                        
+                        <div class="related-list">
+                        	<ul class="list-unstyled col-md-6">
+								{{#each related}}
+									<li><a href="/search?query={{suggestion}}">search {{suggestion}}</a></li>
+								{{/each}}
+                            </ul>
+                        </div>
+                        
+                        </div>
+                        
+                    </div>
+                    <div id="pagination">
+                        	<ul class="list-inline  center-block text-center">
+								{{#each pages}}
+                                {{#if current}}<li class="current">{{else}}<li>{{/if}}
+                                  <a href="{{url}}">{{page}}</a>
+                                </li>
+								{{/each}}
+                            </ul>
+                        </div>
+                </div>
+
+            	<div id="secondary" class="sidebar col-md-2 col-md-pull-6">
+                    <div id="categories">
+                                    <aside id="news" class="widget">
+                                    <h6><span class="icon icon-1"></span>News</h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="/local-news">Local</a>
+                                            </li>
+                                            <li>
+                                                <a href="/news">National</a>
+                                            </li>
+                                             <li>
+                                                <a href="/world-news">World</a>
+                                            </li>
+                                            <li>
+                                                <a href="/top-news">Top News</a>
+                                            </li>
+                                        </ul>
+                                    </aside>
+                                    
+                                    <aside id="finance" class="widget">
+                                    <h6><span class="icon icon-2"></span>Finance</h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="/stocks">Stocks</a>
+                                            </li>
+                                            <li>
+                                                <a href="/stocks-news">News</a>
+                                            </li>
+                                             <li>
+                                                <a href="/local-finance">Local</a>
+                                            </li>
+                                            <li>
+                                                <a href="/global-finance">Global</a>
+                                            </li>
+                                        </ul>
+                                    </aside>
+                                    
+                                    <aside id="entertainment" class="widget">
+                                    <h6><span class="icon icon-3"></span>Entertainment</h6>
+                                         <ul class="list-unstyled">
+                                            <li>
+                                                <a href="/tv">TV</a>
+                                            </li>
+                                            <li>
+                                                <a href="/movies">Movies</a>
+                                            </li>
+                                             <li>
+                                                <a href="/music">Music</a>
+                                            </li>
+                                            <li>
+                                                <a href="/books">Books</a>
+                                            </li>
+                                        </ul>
+                                    </aside>
+            
+                                    <aside id="sports" class="widget">
+                                    <h6><span class="icon icon-4"></span>Sports</h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="/mlb">MLB</a>
+                                            </li>
+                                            <li>
+                                                <a href="/nba">NBA</a>
+                                            </li>
+                                             <li>
+                                                <a href="/ncaa">NCAA</a>
+                                            </li>
+                                            <li>
+                                                <a href="/nfl">NFL</a>
+                                            </li>
+                                        </ul>
+                                    </aside>
+                                    
+                                    <aside id="weather" class="widget">
+                                    <h6><span class="icon icon-5"></span>Weather</h6>
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="/weather">Today</a>
+                                            </li>
+                                            <li>
+                                                <a href="/week-weather">This Week</a>
+                                            </li>
+                                             <li>
+                                                <a href="/national-weather">National</a>
+                                            </li>
+                                            <li>
+                                                <a href="/world-weather">World</a>
+                                            </li>
+                                        </ul>
+                                    </aside>
+                    
+                    </div>
+
+                </div>
+            
+                <div id="tertiary" class="sidebar col-md-3">
+                    <div class="row">
+                    	<aside id="trending" class="widget">
+                        <ul class="social-media list-inline">
+                            <li><a href="javascript:void(0)" onclick="share_facebook(document.URL);"><img width="8" height="16" src="img/facebook.svg"></a></li>
+                            <li><a href="https://twitter.com/share?url=" + document.URL target="_blank"><img width="20" height="16" src="img/twitter.svg"></a></li>
+                        </ul>
+                         <h3>Trending</h3>
+                         <ul class="list-unstyled">
+                            {{#each trending}}
+                               <li><a href="{{url}}"><strong>{{title}}:</strong>
+                               {{snippet}}</a></li>
+                            {{/each}}
+                         </ul>
+                        </aside>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Footer -->
+
+    <footer>        
+        <div id="copyright">
+        	<div class="container">
+            	<div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; 2014 by Cloud Hound and those posting information, <a href="">Terms &amp; Conditions</a>, <a href="">Privacy Policy</a>. All Rights Reserved.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+    
+    <!-- Plugin JavaScript -->
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/functions.js"></script>
+        
+	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-56692204-1', 'auto');
+      ga('send', 'pageview');
+    
+    </script>
+</body>
+
+</html>

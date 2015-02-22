@@ -1,1 +1,1 @@
-web: node --debug index.js
+web: node --debug=7000 index.js

@@ -304,8 +304,10 @@ function yahooSearch(term, options, callback) {
 
         if (err) return callback(err);
 
+        console.log("1");
         search = JSON.parse(data).bossresponse["web"];
         adsSearch = JSON.parse(data).bossresponse["ads"];
+        console.log("2");
 
         yahooSearchRelated(term, function(err, related) {
             if (err) return callback(err);

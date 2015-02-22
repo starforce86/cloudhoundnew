@@ -284,6 +284,7 @@ function registerService(app, name, options) {
 
 function yahooSearch(term, options, callback) {
 
+    console.log("yahooSearch");
     var searchTerm = options.append ? term + ' ' + options.append : term;
     var searchOptions = {};
     searchOptions.count = options.count || 10;

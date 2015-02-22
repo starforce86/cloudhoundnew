@@ -30,6 +30,34 @@
 
 <body class="inner">
 
+	<!-- Facebook invite friends feature-->
+	<div id="fb-root"></div>
+	<script src="http://connect.facebook.net/en_US/all.js"></script>
+	<script>
+		FB.init({
+		appId:'1485946781678000',
+		cookie:true,
+		status:true,
+		xfbml:true
+		});
+
+		function InviteF()
+		{
+			FB.ui({
+				method: 'apprequests',
+				message: 'Show your Friends how to Search the Cloud',
+			}, function(response){
+				console.log(response);
+			});	
+		}
+		function share_facebook(url) {
+			FB.ui({
+			  method: 'share',
+			  href: url,
+			}, function(response){});
+		}
+	</script>
+	
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
    <header class="header">
@@ -39,6 +67,10 @@
             <div class="container">
                 <div class="row">
                     <a class="navbar-brand" href="/"><img src="img/logo.png" alt="Cloud Hound"></a>
+        
+                    <div id="sub-menu" class="pull-right">
+                      <button type="button" class="btn btn-default" onclick="InviteF();">Invite Friends</button>
+                    </div>
               </div>
             </div>
             <!-- /.container -->
@@ -58,10 +90,10 @@
                                 <h1>{{heading}}</h1>
                                 <div id="social-media">
                                 	<ul class="list-inline">
-                                    	<li><a href="javascript:void(0)"><img src="img/facebook-icon.png"></a></li>
-                                        <li><a href="javascript:void(0)"><img src="img/twitter-icon.png"></a></li>
-                                        <li><a href="javascript:void(0)"><img src="img/youtube-icon.png"></a></li>
-                                        <li><a href="javascript:void(0)"><img src="img/instagram-icon.png"></a></li>
+                                    	<li><a href="javascript:void(0)" onclick="share_facebook(document.URL);"><img src="img/facebook-icon.png"></a></li>
+                                        <li><a href="https://twitter.com/share?url=" + document.URL target="_blank"><img src="img/twitter-icon.png"></a></li>
+                                        <li><a href=""><img src="img/youtube-icon.png"></a></li>
+                                        <li><a href=""><img src="img/instagram-icon.png"></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -71,24 +103,8 @@
                                 </div>-->
                         </div>
                         <div id="content">
-                          <ul class="news">
-                          {{#each news}}
-                            <li>
-                              <div class="news-item">
-                                {{#if image}}
-                                <div class="news-image">
-                                  <img src="{{image}}"></img>
-                                </div>
-                                {{/if}}
-                                <div class="news-about">
-                                  <h3 class="news-heading"><a href="{{link}}">{{title}}</a></h3>
-                                  <p class="news-description">{{{description}}}</p>
-                                </div>
-                              </div>
-                            </li>
-                          {{/each}}
-                        </ul>
-                      </div>
+                          {{{content}}}
+                        </div>
                     </div>
                 </div>
                 <div id="secondary" class="sidebar col-md-3">
@@ -203,7 +219,7 @@
                                     <a href="/weather">This Week</a>
                                 </li>
                                  <li>
-                                    <a href="/national-weather">National</a>
+                                     <a href="/national-weather">National</a>
                                 </li>
                                 <li>
                                     <a href="/world-weather">World</a>

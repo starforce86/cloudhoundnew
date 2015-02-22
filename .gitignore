@@ -1,2 +1,8 @@
-node_modules
 .idea
+node_modules/express
+node_modules/express-handlebars
+node_modules/geoip-lite
+node_modules/htmlparser2
+node_modules/lodash
+node_modules/parse-rss
+
